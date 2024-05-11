@@ -1,5 +1,7 @@
 const kue = require('kue');
 const express = require('express');
+const serveStatic = require('serve-static');
+const path = require('path');
 const port = 3000;
 // create our job queue
 const jobs = kue.createQueue(),
@@ -61,7 +63,14 @@ jobs.on('job complete', function (id) {
 
 // start the UI
 const app = express();
-app.use(kue.app);
+app.use(
+    serveStatic(path.join(__dirname, 'dist'), {
+        // cacheControl,
+        // setHeaders
+        maxAge: '1d',
+    }),
+);
+app.use('/kue-ui', kue.app);
 app.listen(port, () => {
     console.log(`UI started on http://localhost:${port}`);
 });

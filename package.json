@@ -4,13 +4,17 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon"
+        "start": "nodemon index.js"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
         "express": "^4.19.2",
-        "kue": "^0.11.6"
+        "kue": "^0.11.6",
+        "serve-static": "^1.15.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.0"
     }
 }
